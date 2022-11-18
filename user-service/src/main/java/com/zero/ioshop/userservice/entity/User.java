@@ -1,18 +1,16 @@
 package com.zero.ioshop.userservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Setter
 @Getter
 @Entity(name = "users")
-
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -20,8 +18,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
+    @Size(min = 5, max = 32)
     private String username;
     @Column(nullable = false)
+    @Size(min = 8, max = 60)
     private String password;
     @Column(nullable = false)
     private String firstName;
@@ -33,7 +33,8 @@ public class User {
     @Column(columnDefinition = "boolean default true")
     private boolean isActive;
     @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns =
+    @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password, String firstName, String lastName, String email) {
