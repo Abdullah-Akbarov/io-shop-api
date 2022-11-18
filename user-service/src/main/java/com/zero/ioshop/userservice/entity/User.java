@@ -1,9 +1,6 @@
 package com.zero.ioshop.userservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,7 +9,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity(name = "users")
-
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -33,7 +31,8 @@ public class User {
     @Column(columnDefinition = "boolean default true")
     private boolean isActive;
     @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles", joinColumns =
+    @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password, String firstName, String lastName, String email) {

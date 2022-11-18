@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @EqualsAndHashCode
 public class Role {
     @Id
