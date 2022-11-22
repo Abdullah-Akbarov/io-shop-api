@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Setter
 @Getter
-@Entity
+@Entity(name = "roles")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString

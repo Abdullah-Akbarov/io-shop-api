@@ -1,11 +1,11 @@
 package com.zero.ioshop.userservice.service;
 
-import java.util.List;
+import com.zero.ioshop.userservice.model.ResponseModel;
 
 public interface BaseService<T> {
-    List<T> listAll();
+    ResponseModel listAll();
 
-    T findById(Long id);
+    ResponseModel findById(Long id);
 
-    T save(T t);
+    ResponseModel save(T t);
 }

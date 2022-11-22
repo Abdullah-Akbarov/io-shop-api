@@ -1,6 +1,8 @@
 package com.zero.ioshop.userservice.entity;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -27,14 +29,18 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     private String photo;
     @Column(columnDefinition = "boolean default true")
-    private boolean isActive;
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns =
-    @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Boolean isActive = true;
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password, String firstName, String lastName, String email) {

@@ -1,10 +1,11 @@
 package com.zero.ioshop.userservice.service;
 
 import com.zero.ioshop.userservice.entity.User;
+import com.zero.ioshop.userservice.model.ResponseModel;
 
 public interface UserService extends BaseService<User> {
-    User findByUsername(String username);
+    ResponseModel findByUsername(String username);
 
-    User findByEmail(String email);
+    ResponseModel findByEmail(String email);
 
 }
