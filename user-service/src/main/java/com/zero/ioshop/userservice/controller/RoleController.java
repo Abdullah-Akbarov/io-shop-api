@@ -31,4 +31,9 @@ public class RoleController {
         Role role = this.modelMapper.map(roleDto, Role.class);
         return roleService.save(role);
     }
+    @PutMapping("{id}")
+    public ResponseModel update(@PathVariable Long id){
+        return new ResponseModel();
+    }
+
 }

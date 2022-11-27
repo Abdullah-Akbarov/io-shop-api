@@ -11,16 +11,17 @@ public class ResponseModel {
     public Integer status;
     public String message;
     public Object data;
-
-    public ResponseModel success(Object data) {
-        return new ResponseModel(200, "success", data);
+    public ResponseModel(MessageStatus messageStatus, Object data){
+        this.status=messageStatus.getCode();
+        this.message=messageStatus.getMessage();
+        this.data=data;
     }
-
-    public ResponseModel success() {
-        return new ResponseModel(200, "success", null);
+    public ResponseModel(MessageStatus messageStatus){
+        this.status=messageStatus.getCode();
+        this.message=messageStatus.getMessage();
     }
-
-    public ResponseModel notFound() {
-        return new ResponseModel(404, "not found", null);
+    public ResponseModel(Integer status, String message){
+        this.status=status;
+        this.message=message;
     }
 }

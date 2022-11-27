@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,14 +23,17 @@ public class User {
     @Column(unique = true, nullable = false)
     @Size(min = 5, max = 32)
     private String username;
+    @NotBlank
     @Column(nullable = false)
-    @Size(min = 8, max = 64)
     private String password;
+    @NotBlank
     @Column(nullable = false)
     private String firstName;
+    @NotBlank
     @Column(nullable = false)
     private String lastName;
     @Column(nullable = false, unique = true)
+    @NotBlank
     private String email;
     private String photo;
     @Column(columnDefinition = "boolean default true")
