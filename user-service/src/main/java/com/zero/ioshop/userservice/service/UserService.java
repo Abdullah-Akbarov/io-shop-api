@@ -7,4 +7,8 @@ public interface UserService extends BaseService<User> {
     ResponseModel findByUsername(String username);
 
     ResponseModel listByPage(Integer page);
+
+    ResponseModel login(User user);
+
+    ResponseModel deactivate(Long id);
 }

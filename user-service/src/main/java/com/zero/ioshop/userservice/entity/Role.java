@@ -11,6 +11,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+/**
+ * this class creates role model and entity in database using jpa
+ */
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

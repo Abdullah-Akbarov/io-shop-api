@@ -16,24 +16,22 @@ import java.util.Set;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * this class creates user model and entity in database using jpa
+ */
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
-    @Size(min = 5, max = 32)
     private String username;
-    @NotBlank
     @Column(nullable = false)
     private String password;
     @NotBlank
-    @Column(nullable = false)
     private String firstName;
     @NotBlank
-    @Column(nullable = false)
     private String lastName;
     @Column(nullable = false, unique = true)
-    @NotBlank
     private String email;
     private String photo;
     @Column(columnDefinition = "boolean default true")

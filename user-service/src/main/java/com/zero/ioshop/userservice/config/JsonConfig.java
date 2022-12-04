@@ -12,6 +12,9 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 public class JsonConfig implements WebMvcConfigurer {
+    /**
+     * configureMessageConverters method is used to customize Json file. method removes null values from file.
+     */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new MappingJackson2HttpMessageConverter(
