@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// ResponseDto is for returning data from rest.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// ResponseDto is for returning data from rest.
 public class ResponseDto {
     private Long id;
     private String username;

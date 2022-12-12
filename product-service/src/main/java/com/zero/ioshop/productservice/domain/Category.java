@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,13 +17,19 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * Creates Category table in database using jpa
+ */
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
-
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isActive = true;
     @OneToMany
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<SubCategory> subCategories = new HashSet<>();
 
     @Override

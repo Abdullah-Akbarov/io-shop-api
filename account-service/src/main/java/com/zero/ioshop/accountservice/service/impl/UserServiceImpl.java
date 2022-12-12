@@ -150,7 +150,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.deactivateById(id) == 1) {
             return new ResponseModel(MessageModel.SUCCESS);
         }
-        return new ResponseModel(MessageModel.COULD_NOT_UPDATE_RECORD);
+        return new ResponseModel(MessageModel.COULD_NOT_DEACTIVATE_RECORD);
     }
 
     /**

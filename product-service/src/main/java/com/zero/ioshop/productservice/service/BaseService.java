@@ -8,4 +8,5 @@ public interface BaseService<T> {
     ResponseModel findById(Long id);
 
     ResponseModel save(T t);
+    ResponseModel deactivate(Long id);
 }

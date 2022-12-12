@@ -1,10 +1,10 @@
 package com.zero.ioshop.productservice.service.impl;
 
-import com.zero.ioshop.productservice.domain.Category;
+import com.zero.ioshop.productservice.domain.SubCategory;
 import com.zero.ioshop.productservice.model.MessageModel;
 import com.zero.ioshop.productservice.model.ResponseModel;
-import com.zero.ioshop.productservice.repository.CategoryRepository;
-import com.zero.ioshop.productservice.service.CategoryService;
+import com.zero.ioshop.productservice.repository.SubCategoryRepository;
+import com.zero.ioshop.productservice.service.SubCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl implements CategoryService {
-
-    private final CategoryRepository repository;
+public class SubCategoryServiceImpl implements SubCategoryService {
+    private final SubCategoryRepository repository;
 
     @Override
     public ResponseModel listAll() {
@@ -23,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseModel findById(Long id) {
-        Optional<Category> byId = repository.findById(id);
+        Optional<SubCategory> byId = repository.findById(id);
         if (byId.isPresent()) {
             return new ResponseModel(MessageModel.SUCCESS, byId.get());
         }
@@ -31,17 +30,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseModel save(Category category) {
-        if (category.getId() == null) {
-            Category save = repository.save(category);
+    public ResponseModel save(SubCategory subCategory) {
+        if (subCategory.getId() == null) {
+            SubCategory save = repository.save(subCategory);
             if (save.getId() == null) {
                 return new ResponseModel(MessageModel.SUCCESS, save);
             }
             return new ResponseModel(MessageModel.COULD_NOT_SAVE_RECORD);
         } else {
-            Optional<Category> byId = repository.findById(category.getId());
+            Optional<SubCategory> byId = repository.findById(subCategory.getId());
             if (byId.isPresent()) {
-                return new ResponseModel(MessageModel.SUCCESS, repository.save(category));
+                return new ResponseModel(MessageModel.SUCCESS, repository.save(subCategory));
             }
             return new ResponseModel(MessageModel.NOT_EXIST);
         }

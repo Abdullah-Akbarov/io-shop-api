@@ -3,15 +3,14 @@ package com.zero.ioshop.accountservice.domain;
 import lombok.*;
 
 import javax.persistence.*;
-
-@Setter
+/**
+ * creates role model and entity in database using jpa
+ */
+ @Setter
 @Getter
 @Entity(name = "roles")
 @NoArgsConstructor
 @AllArgsConstructor
-/**
- * creates role model and entity in database using jpa
- */
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

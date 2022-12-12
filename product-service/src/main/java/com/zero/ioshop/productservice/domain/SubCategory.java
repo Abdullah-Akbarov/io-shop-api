@@ -10,13 +10,16 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * Creates SubCategory table in database using jpa
+ */
 public class SubCategory {
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isActive = true;
     @ManyToOne
     private Category category;
 

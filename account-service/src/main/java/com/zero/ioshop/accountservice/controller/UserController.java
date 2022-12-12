@@ -107,7 +107,7 @@ public class UserController {
     @PutMapping
     public ResponseModel update(@RequestBody UserDto userDto) {
         // modelMapper userDto converts into User Entity
-        User user = this.mapper.map(userDto, User.class);
+        User user = mapper.map(userDto, User.class);
         return userService.save(user);
     }
 

@@ -8,15 +8,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * Creates user table in database using jpa
+ */
 @Setter
 @Getter
 @Entity(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-/**
- * this class creates user model and entity in database using jpa
- */
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
