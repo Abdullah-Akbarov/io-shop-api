@@ -36,7 +36,10 @@ public class SubCategoryController {
     public ResponseModel getById(@PathVariable Long id) {
         return subCategoryService.findById(id);
     }
-
+    @GetMapping("/parent/{id}")
+    public ResponseModel getByCategory(@PathVariable Long id){
+        return subCategoryService.findByCategoryId(id);
+    }
     /**
      * saves new SubCategory
      *
@@ -59,5 +62,15 @@ public class SubCategoryController {
     @PutMapping
     public ResponseModel update(@RequestBody SubCategoryDto subCategoryDto) {
         return subCategoryService.save(mapper.map(subCategoryDto, SubCategory.class));
+    }
+
+    /**
+     * gets id from api
+     *
+     * @param id
+     */
+    @DeleteMapping("{id}")
+    public ResponseModel deactivate(@PathVariable Long id) {
+        return subCategoryService.deactivate(id);
     }
 }

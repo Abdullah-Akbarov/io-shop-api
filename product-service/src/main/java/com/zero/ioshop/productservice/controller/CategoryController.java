@@ -38,7 +38,7 @@ public class CategoryController {
     }
 
     /**
-     * saves new category
+     * gets new category
      *
      * @param categoryDto
      * @return saved category entity
@@ -57,5 +57,14 @@ public class CategoryController {
     @PutMapping
     public ResponseModel update(@RequestBody CategoryDto categoryDto) {
         return categoryService.save(mapper.map(categoryDto, Category.class));
+    }
+    /**
+     * gets id from api
+     *
+     * @param id
+     */
+    @DeleteMapping("{id}")
+    public ResponseModel deactivate(@PathVariable Long id){
+        return categoryService.deactivate(id);
     }
 }

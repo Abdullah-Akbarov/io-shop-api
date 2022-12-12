@@ -28,9 +28,14 @@ public class Category {
     private String name;
     @Column(columnDefinition = "boolean default true")
     private Boolean isActive = true;
-    @OneToMany
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<SubCategory> subCategories = new HashSet<>();
+    @JoinTable(
+            name = "category_sub",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "sub_category_id")
+    )
+    private Set<SubCategory> roles = new HashSet<>();
 
     @Override
     public String toString() {

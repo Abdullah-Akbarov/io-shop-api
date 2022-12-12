@@ -147,6 +147,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResponseModel deactivate(Long id) {
+        if (userRepository.findById(id).isPresent()){
+            return new ResponseModel(MessageModel.NOT_EXIST);
+        }
         if (userRepository.deactivateById(id) == 1) {
             return new ResponseModel(MessageModel.SUCCESS);
         }

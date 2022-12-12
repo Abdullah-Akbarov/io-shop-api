@@ -16,11 +16,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository repository;
 
+    /**
+     * gets all subcategories
+     */
     @Override
     public ResponseModel listAll() {
         return new ResponseModel(MessageModel.SUCCESS, repository.findAll());
     }
 
+    /**
+     * finds specific category by id
+     *
+     * @param id
+     */
     @Override
     public ResponseModel findById(Long id) {
         Optional<Category> byId = repository.findById(id);
@@ -30,6 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
         return new ResponseModel(MessageModel.NOT_FOUND, null);
     }
 
+    /**
+     * saves category data or updates it
+     *
+     * @param category
+     * @return saved or updated data
+     */
     @Override
     public ResponseModel save(Category category) {
         if (category.getId() == null) {
@@ -47,8 +61,19 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    /**
+     * turns isActive into false
+     *
+     * @param id subCategoryId
+     */
     @Override
     public ResponseModel deactivate(Long id) {
-        return null;
+        if (repository.findById(id).isPresent()){
+            return new ResponseModel(MessageModel.NOT_EXIST);
+        }
+        if (repository.deactivateById(id) == 1) {
+            return new ResponseModel(MessageModel.SUCCESS);
+        }
+        return new ResponseModel(MessageModel.COULD_NOT_DEACTIVATE_RECORD);
     }
 }
