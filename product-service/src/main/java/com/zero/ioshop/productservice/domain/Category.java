@@ -4,13 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -28,15 +24,8 @@ public class Category {
     private String name;
     @Column(columnDefinition = "boolean default true")
     private Boolean isActive = true;
-    @ManyToMany(cascade = {CascadeType.MERGE})
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinTable(
-            name = "category_sub",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "sub_category_id")
-    )
-    private Set<SubCategory> roles = new HashSet<>();
-
+    @ManyToOne
+    private Category parent;
     @Override
     public String toString() {
         return "Category{" + "id=" + id + ", name='" + name + '\'' + '}';

@@ -8,6 +8,7 @@ import com.zero.ioshop.productservice.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +37,20 @@ public class CategoryServiceImpl implements CategoryService {
             return new ResponseModel(MessageModel.SUCCESS, byId.get());
         }
         return new ResponseModel(MessageModel.NOT_FOUND, null);
+    }
+
+    /**
+     * gets category's subcategories by id.
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseModel findBySubCategoriesById(Long id) {
+        List<Category> byParentId = repository.findByParentId(id);
+        if(byParentId.isEmpty()){
+            return new ResponseModel(MessageModel.NOT_FOUND);
+        }
+        return new ResponseModel(MessageModel.SUCCESS, byParentId);
     }
 
     /**

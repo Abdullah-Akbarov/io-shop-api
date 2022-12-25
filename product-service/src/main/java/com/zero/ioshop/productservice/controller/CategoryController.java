@@ -38,6 +38,16 @@ public class CategoryController {
     }
 
     /**
+     * returns subcategories of category
+     * @param id
+     * @return subcategories
+     */
+    @GetMapping("sub/{id}")
+    public ResponseModel getSubCategoriesById(@PathVariable Long id) {
+        return categoryService.findBySubCategoriesById(id);
+    }
+
+    /**
      * gets new category
      *
      * @param categoryDto
